@@ -33,17 +33,19 @@ class View(ft.UserControl):
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
 
-        self._ddArtist = ft.Dropdown(label="Artist", width=250)
-        self._btnCreaGrafo = ft.ElevatedButton(text="Trova Cammino", on_click=self._controller.handleCammino, width=250)
-
-        row2 = ft.Row([self._ddArtist, self._btnCreaGrafo],
+        self._ddArtist = ft.Dropdown(label="Artist", width=250, disabled=True)
+        self._btnTrovaCammino = ft.ElevatedButton(text="Trova Cammino", on_click=self._controller.handleCammino, width=250, disabled=True)
+        row2 = ft.Row([self._ddArtist, self._btnTrovaCammino],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row2)
+
 
         # List View where the reply is printed
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
         self._page.controls.append(self.txt_result)
         self._page.update()
+
+        self._controller.fillDDGenre()
 
     @property
     def controller(self):
